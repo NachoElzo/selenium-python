@@ -20,3 +20,4 @@
     - add the pattern \*\*/**pycache**
 
 - execute example `pytest tests/specs/test_home_page.py`
+  -add
