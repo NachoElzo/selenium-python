@@ -26,17 +26,12 @@ jobs:
       # Instalar dependencias
       - name: Install dependencies
         run: |
-          pip install -U selenium pytest webdriver-manager
-
-      # Instalar Chrome
-      - name: Install Chrome
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y chromium-browser
-
+          pip install -U selenium
+          pip install pytest
+          pip install webdriver-manager
       # Ejecutar las pruebas
       - name: Run tests
         env:
-          DISPLAY: ":99" # Necesario para entornos gráficos en headless
+          DISPLAY: ":99" # Required for graphical interfaces in headless mode
         run: |
           pytest tests/specs/
