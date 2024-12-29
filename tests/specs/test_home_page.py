@@ -8,10 +8,16 @@ from pages.home_page import HomePage  # Ajusta la ruta según tu estructura
 def test_login():
     # Configuración de Chrome con opciones headless
     options = Options()
-    # options.add_argument("--headless")
+    options.add_argument(
+        "--headless=new"
+    )  # Nueva implementación de headless para mayor estabilidad
     options.add_argument("--disable-gpu")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--remote-debugging-port=9222")
+    options.add_argument("--disable-background-timer-throttling")
+    options.add_argument("--disable-backgrounding-occluded-windows")
+
     service = Service(ChromeDriverManager().install())
 
     # Inicializar el driver con opciones configuradas
@@ -23,4 +29,4 @@ def test_login():
     homePage.go_to_login()
 
     # Cerrar el navegador
-    driver.close()
+    driver.quit()

@@ -13,21 +13,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Clonar el repositorio
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
+      # Configurar Python
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
-          python-version: "3.8"
+          python-version: "3.9" # Cambiado a una versión más reciente compatible
 
+      # Instalar dependencias
       - name: Install dependencies
         run: |
-          pip install -U selenium
-          pip install pytest
-          pip install webdriver-manager
-          pip install selenium pytest webdriver-manager
+          pip install -U selenium pytest webdriver-manager
 
+      # Instalar Chrome
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y chromium-browser
+
+      # Ejecutar las pruebas
       - name: Run tests
+        env:
+          DISPLAY: ":99" # Necesario para entornos gráficos en headless
         run: |
           pytest tests/specs/
