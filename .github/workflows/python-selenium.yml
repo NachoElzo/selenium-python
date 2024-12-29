@@ -26,6 +26,7 @@ jobs:
           pip install -U selenium
           pip install pytest
           pip install webdriver-manager
+          pip install selenium pytest webdriver-manager
 
       - name: Run tests
         run: |
